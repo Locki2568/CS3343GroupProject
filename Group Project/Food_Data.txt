@@ -1,0 +1,80 @@
+APPRETIZER,Salad,55
+APPRETIZER,Goat Cheese Trio,60
+APPRETIZER,Cannellini Bruschetta,20
+APPRETIZER,Cucumber-Caviar Rounds,50
+APPRETIZER,Fried Ravioli,30
+APPRETIZER,Mini Manchego Tarts,35
+APPRETIZER,Stuffed Cherry Peppers,23
+APPRETIZER,Pimiento Cheese Spread,65
+APPRETIZER,Creamy Shrimp Dip,96
+APPRETIZER,Spiced Pita Chips,15
+APPRETIZER,Pumpkin Hummus,54
+APPRETIZER,Spicy Broiled Oysters,65
+APPRETIZER,Shrimp-Bacon Sliders,85
+APPRETIZER,Stuffed Snow Peas,89
+APPRETIZER,Creamy Stuffed Mushrooms,12
+APPRETIZER,Smoked Salmon Canapes,32
+APPRETIZER,Fried Artichoke Hearts,66
+APPRETIZER,Goat Cheese with Tomato Chutney,88
+APPRETIZER,Pumpkin-Ham Fritters,48
+APPRETIZER,Sherry-Glazed Mushrooms,41
+MAINDISH,Beef Enchailada,100
+MAINDISH,Beer and Brown Sugar Kelbasa,119
+MAINDISH,Crab Cakes with Remoulade Sauce,25
+MAINDISH,Favorite Meatload,199
+MAINDISH,Frito Pie,89
+MAINDISH,Creek Lamb Cyros with Tzatzili Sauce,70
+MAINDISH,Slow Cooker BBQ Ribs,125
+MAINDISH,Shanghai noodles,200
+MAINDISH,Japanese Hotpot,152
+MAINDISH,Turkey Tetrazzini,89
+MAINDISH,Mexico Nachos,90
+MAINDISH,Beef Kabab,10
+MAINDISH,Fried Rice,23
+MAINDISH,Super size Sandwitch,11
+MAINDISH,French Frise ,55
+MAINDISH,Fish and Chips,99
+MAINDISH,Fo Tiao Qiang,88
+MAINDISH,Roast Piggen,199
+MAINDISH,Baby D,56
+MAINDISH,Michaels D,45
+DESSERT,Ice Cream,40
+DESSERT,Tiramisu,32
+DESSERT,Egg Tart,25
+DESSERT,Cheese Cake,69
+DESSERT,Strawberry Cake,48
+DESSERT,CupCake,55
+DESSERT,Applie Pie,33
+DESSERT,Brownies,15
+DESSERT,Lemon Cake,20
+DESSERT,Expresson Crinkles,65
+DESSERT,Chocolate Cherry Cookies,45
+DESSERT,HongKong Sweet Soup,23
+DESSERT,Stinky Tofu,21
+DESSERT,Mocha Ice Cream,27
+DESSERT,Pumpkin-Pudding,25
+DESSERT,Taiwan Pudding,99
+DESSERT,Baby Cookies,55
+DESSERT,Netela Soup,64
+DESSERT,Rock Candy,54
+DESSERT,Teja,85
+DRINKS,Coka Cola,45
+DRINKS,Sprite,62
+DRINKS,Water,12
+DRINKS,Soda Water,32
+DRINKS,Teqila,145
+DRINKS,Hot Chocolate,65
+DRINKS,Lemon Soda,45
+DRINKS,Lemon Tea,99
+DRINKS,Organe Juice,35
+DRINKS,Apple Juice,40
+DRINKS,Red Wine,60
+DRINKS,White Wine,60
+DRINKS,Soju,60
+DRINKS,Beer,80
+DRINKS,Sake,45
+DRINKS,Ice Tea,32
+DRINKS,Tropical Fruit Juice,215
+DRINKS,Lemonade,65
+DRINKS,Taiwanese Bubble Tea,22
+DRINKS,Michael P,12
