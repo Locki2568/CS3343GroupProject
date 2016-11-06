@@ -14,14 +14,19 @@ public class Main
 	{
 		APPETIZER, DESSERT, DRINKS, MAINDISH
 	}
-	
+
 	private static Map<String, String> userInput = new HashMap<String,String>();
 	private static ArrayList<ArrayList<? extends Food>> menu = new ArrayList<ArrayList<? extends Food>>();
 	private static ArrayList<? extends Food> appetizerList = new ArrayList<Appetizer>();
 	private static ArrayList<? extends Food> mainDishList = new ArrayList<MainDish>();
 	private static ArrayList<? extends Food> drinkList = new ArrayList<Drinks>();
 	private static ArrayList<? extends Food> dessertList = new ArrayList<Dessert>();
-	
+
+	private static ArrayList<Food> foodStorageList = new ArrayList<Food>();
+	//private static ArrayList<ArrayList<Food>> tmpFoodCombination = new ArrayList<ArrayList<Food>>();
+	private static ArrayList<Combination> tmpFoodCombinationList = new ArrayList<Combination>();
+	private static double tempCombinationPrice = 0;
+
 	public static Map<String, String> importUserInput()
 	{
 		// Import user input
@@ -31,7 +36,7 @@ public class Main
 		boolean drink;
 		boolean dessert;
 		double budget;
-		
+
 		System.out.println("Would you like to order appretizer?");
 		appretizer = input.nextBoolean();
 		System.out.println("Would you like to order main dish?");
@@ -42,26 +47,23 @@ public class Main
 		dessert = input.nextBoolean();
 		System.out.println("Please enter your budget");
 		budget = input.nextDouble();
-		if(appretizer)
+
 		userInput.put("appretizer",String.valueOf(appretizer));
-		if(mainDish)
 		userInput.put("mainDish",String.valueOf(mainDish));
-		if(drink)
 		userInput.put("drink",String.valueOf(drink));
-		if(dessert)
 		userInput.put("dessert",String.valueOf(dessert));
 		userInput.put("budget", String.valueOf(budget));
-	
+
 		return userInput;
 	}
-	
+
 	public static void importMenu() throws FileNotFoundException
 	{
 		ArrayList<Appetizer> tempAppetizerList = new ArrayList<Appetizer>();
 		ArrayList<MainDish> tempMainDishList = new ArrayList<MainDish>();
 		ArrayList<Drinks> tempDrinkList = new ArrayList<Drinks>();
 		ArrayList<Dessert> tempDessertList = new ArrayList<Dessert>();
-		
+
 		Scanner inFile = new Scanner(new File("Food_Data.txt"));
 		while(inFile.hasNextLine())
 		{
@@ -85,18 +87,18 @@ public class Main
 				tempDrinkList.add(new Drinks(inputArray[1],foodType.DRINKS,inputArray[2]));
 			}
 		}
-		
+
 		appetizerList = tempAppetizerList;
 		dessertList = tempDessertList;
 		mainDishList = tempMainDishList;
 		drinkList = tempDrinkList;
-		
+
 		System.out.println("Import completed!!");
 	}
-	
+
 	public static void main(String arg[]) 
 	{
-		
+
 		try {
 			importMenu();
 		} catch (FileNotFoundException e) {
@@ -104,68 +106,114 @@ public class Main
 			System.exit(0);
 		}
 		importUserInput();
+
+		if(userInput.get("appretizer").equals("true"))
+			menu.add(appetizerList);
+		if(userInput.get("mainDish").equals("true"))
+			menu.add(mainDishList);
+		if(userInput.get("drink").equals("true"))
+			menu.add(drinkList);
+		if(userInput.get("dessert").equals("true"))
+			menu.add(dessertList);
+
+		calculatePrice(menu, userInput);
 		
-		menu.add(appetizerList);
-		menu.add(mainDishList);
-		menu.add(drinkList);
-		menu.add(dessertList);
-		
-		//calculatePrice(menu, userInput);
+		for(Combination c :tmpFoodCombinationList)
+		{
+			c.getCombinationPrice();
+		}
 	}
-	
+
 	public Map<String, String> getUserInput()
 	{
 		return userInput;
 	}
-	
+
 	public ArrayList<ArrayList<? extends Food>> getMenu()
 	{
 		return menu;
 	}
-	
+
 
 	private static void calculatePrice(ArrayList<ArrayList<? extends Food>> menu2, Map<String, String> userInput2) {
 		int currentMenuCounter=0;
-		int currentFoodListCounter=0;
-		for (ArrayList<? extends Food> arrayListOfFood : menu2)
+		double tempPrice = 0;
+
+		for (Food f: menu.get(0))
 		{
-			for (Food f: arrayListOfFood)
+			if (Double.parseDouble(f.getPrice()) > Double.parseDouble(userInput2.get("budget")))
 			{
-				calculateCombination(f,currentMenuCounter,currentFoodListCounter);
-				currentFoodListCounter++;
+				continue;
 			}
-			currentMenuCounter++;
+			if (foodStorageList.isEmpty())
+			{
+				foodStorageList.add(f);
+			}
+			else
+			{
+				foodStorageList.clear();
+				foodStorageList.add(f);
+			}
+			tempPrice += calculateCombination(f,currentMenuCounter);
+			
+			if (tempPrice <= Double.parseDouble(userInput2.get("budget")) && tempPrice> 0)
+			{
+				tmpFoodCombinationList.add(new Combination(foodStorageList));
+			}
+			else if (tempPrice < 0)
+			{
+				System.out.println("Shit happens!!!");
+			}
+			foodStorageList.clear();
+			tempPrice = 0;
 		}
 	}
 
-	private static void calculateCombination(Food f, int curretCounter, int currentFoodListCounter) 
+	private static double calculateCombination(Food f, int currentMenuCounter) 
 	{
-		double tempPrice = 0;
-		for (int i = 0; i<menu.size();i++)
+		for (int i = currentMenuCounter+1; i<menu.size();i++)
 		{
-			if (i != curretCounter)
+			if (i != menu.size()-1)
 			{
-				tempPrice += Double.parseDouble(menu.get(i).get(currentFoodListCounter).getPrice());
+				for(Food f2 :menu.get(i))
+				{
+					tempCombinationPrice += Double.parseDouble(f2.getPrice());
+					foodStorageList.add(f2);
+					tempCombinationPrice += calculateCombination(f2, currentMenuCounter);
+				}
+			}
+			else
+			{
+				for(Food f3 :menu.get(i))
+				{
+					double tempPrice;
+					tempCombinationPrice += Double.parseDouble(f3.getPrice());
+					foodStorageList.add(f3);
+					tempPrice = tempCombinationPrice;
+					tempCombinationPrice = 0;
+					return tempPrice;
+				}
 			}
 		}
-		if (tempPrice <= Double.parseDouble(userInput.get("budget")))
-		{
-			Set<String> keySet = userInput.keySet();
-			keySet.remove("budget");
-			Object[] keys = keySet.toArray();
-			
-			if (keys.length == 2)
-				System.out.println(keys[0].toString());
-				//System.out.println(keys[0].toString());
-			else if (keys.length == 3)
-				System.out.println(keys[0].toString()+ " " +keys[1].toString());
-			else if (keys.length == 4)
-				System.out.println(keys[0].toString()+ " " + keys[1].toString()+" " + keys[2].toString());
-			else if (keys.length == 5)
-				System.out.println(keys[0].toString()+ " " + keys[1].toString()+" " + keys[2].toString() + " "+ keys[3].toString());
-			else
-				System.out.println("NO combination here.");
-		}
+		return -1000000;
+		//		if (tempPrice <= Double.parseDouble(userInput.get("budget")))
+		//		{
+		//			tmpFoodCombinationList.add(new Combination(tmpFoodCombination));
+		//			Set<String> keySet = userInput.keySet();
+		//			keySet.remove("budget");
+		//			Object[] keys = keySet.toArray();
+		//			
+		//			if (keys.length == 2)
+		//				System.out.println(keys[0].toString());
+		//				//System.out.println(keys[0].toString());
+		//			else if (keys.length == 3)
+		//				System.out.println(keys[0].toString()+ " " +keys[1].toString());
+		//			else if (keys.length == 4)
+		//				System.out.println(keys[0].toString()+ " " + keys[1].toString()+" " + keys[2].toString());
+		//			else if (keys.length == 5)
+		//				System.out.println(keys[0].toString()+ " " + keys[1].toString()+" " + keys[2].toString() + " "+ keys[3].toString());
+		//			else
+		//				System.out.println("NO combination here.");
 	}
-	
+
 }
