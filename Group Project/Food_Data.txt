@@ -1,23 +1,23 @@
-APPRETIZER,Salad,55
-APPRETIZER,Goat Cheese Trio,60
-APPRETIZER,Cannellini Bruschetta,20
-APPRETIZER,Cucumber-Caviar Rounds,50
-APPRETIZER,Fried Ravioli,30
-APPRETIZER,Mini Manchego Tarts,35
-APPRETIZER,Stuffed Cherry Peppers,23
-APPRETIZER,Pimiento Cheese Spread,65
-APPRETIZER,Creamy Shrimp Dip,96
-APPRETIZER,Spiced Pita Chips,15
-APPRETIZER,Pumpkin Hummus,54
-APPRETIZER,Spicy Broiled Oysters,65
-APPRETIZER,Shrimp-Bacon Sliders,85
-APPRETIZER,Stuffed Snow Peas,89
-APPRETIZER,Creamy Stuffed Mushrooms,12
-APPRETIZER,Smoked Salmon Canapes,32
-APPRETIZER,Fried Artichoke Hearts,66
-APPRETIZER,Goat Cheese with Tomato Chutney,88
-APPRETIZER,Pumpkin-Ham Fritters,48
-APPRETIZER,Sherry-Glazed Mushrooms,41
+APPETIZER,Salad,55
+APPETIZER,Goat Cheese Trio,60
+APPETIZER,Cannellini Bruschetta,20
+APPETIZER,Cucumber-Caviar Rounds,50
+APPETIZER,Fried Ravioli,30
+APPETIZER,Mini Manchego Tarts,35
+APPETIZER,Stuffed Cherry Peppers,23
+APPETIZER,Pimiento Cheese Spread,65
+APPETIZER,Creamy Shrimp Dip,96
+APPETIZER,Spiced Pita Chips,15
+APPETIZER,Pumpkin Hummus,54
+APPETIZER,Spicy Broiled Oysters,65
+APPETIZER,Shrimp-Bacon Sliders,85
+APPETIZER,Stuffed Snow Peas,89
+APPETIZER,Creamy Stuffed Mushrooms,12
+APPETIZER,Smoked Salmon Canapes,32
+APPETIZER,Fried Artichoke Hearts,66
+APPETIZER,Goat Cheese with Tomato Chutney,88
+APPETIZER,Pumpkin-Ham Fritters,48
+APPETIZER,Sherry-Glazed Mushrooms,41
 MAINDISH,Beef Enchailada,100
 MAINDISH,Beer and Brown Sugar Kelbasa,119
 MAINDISH,Crab Cakes with Remoulade Sauce,25
