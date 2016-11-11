@@ -23,10 +23,9 @@ public class Main
 	private static ArrayList<? extends Food> dessertList = new ArrayList<Dessert>();
 	private static ArrayList<ArrayList<Food>> tmpFoodCombination = new ArrayList<ArrayList<Food>>();
 	private static ArrayList<Combination> tmpFoodCombinationList = new ArrayList<Combination>();
-	private static ArrayList<Food> storageFoodList = new ArrayList<Food>();
 	private static double tempCombinationPrice = 0;
 
-	public static Map<String, String> importUserInput()
+	public static void importUserInput()
 	{
 		// Import user input
 		Scanner input = new Scanner(System.in);
@@ -52,8 +51,20 @@ public class Main
 		userInput.put("drink",String.valueOf(drink));
 		userInput.put("dessert",String.valueOf(dessert));
 		userInput.put("budget", String.valueOf(budget));
-
-		return userInput;
+		
+		if(userInput.get("appretizer").equals("false") && userInput.get("mainDish").equals("false") 
+							&& userInput.get("drink").equals("false") && userInput.get("dessert").equals("false"))
+		{
+			System.out.println("Invalid input, please choose atleast one type of food.");
+		}
+		else if (Integer.parseInt(userInput.get("budget")) <= 0)
+		{
+			System.out.println("Invalid input, the bugget should be greater than one.");
+		}
+		else
+		{
+			System.out.println("Import user input Complete.");
+		}	
 	}
 
 	public static void importMenu() throws FileNotFoundException
@@ -187,11 +198,8 @@ public class Main
 		}
 	}
 
-	private static void calculateCombination(int currentMenuCounter, ArrayList<Food> foodStorageListCopy) 
-	{
-		// Implement deep clone not just pass by reference or shallow copy
-		ArrayList foodStorageList = new ArrayList(foodStorageListCopy);
-		
+	private static void calculateCombination(int currentMenuCounter, ArrayList<Food> foodStorageList) 
+	{	
 		for (int i = currentMenuCounter+1; i<menu.size();i++)
 		{
 			if (i < menu.size()-1)
@@ -219,10 +227,8 @@ public class Main
 					{
 						tmpFoodCombination.add(foodStorageList);
 						ArrayList CopyOffoodStorageList = new ArrayList(foodStorageList);
-						//storageFoodList.addAll(foodStorageList);
 						Combination combination = new Combination(CopyOffoodStorageList);
 						tmpFoodCombinationList.add(combination);
-						
 					}
 					
 					tempCombinationPrice -= Double.parseDouble(f3.getPrice());
@@ -230,24 +236,6 @@ public class Main
 				}
 			}
 		}
-		//		if (tempPrice <= Double.parseDouble(userInput.get("budget")))
-		//		{
-		//			tmpFoodCombinationList.add(new Combination(tmpFoodCombination));
-		//			Set<String> keySet = userInput.keySet();
-		//			keySet.remove("budget");
-		//			Object[] keys = keySet.toArray();
-		//			
-		//			if (keys.length == 2)
-		//				System.out.println(keys[0].toString());
-		//				//System.out.println(keys[0].toString());
-		//			else if (keys.length == 3)
-		//				System.out.println(keys[0].toString()+ " " +keys[1].toString());
-		//			else if (keys.length == 4)
-		//				System.out.println(keys[0].toString()+ " " + keys[1].toString()+" " + keys[2].toString());
-		//			else if (keys.length == 5)
-		//				System.out.println(keys[0].toString()+ " " + keys[1].toString()+" " + keys[2].toString() + " "+ keys[3].toString());
-		//			else
-		//				System.out.println("NO combination here.");
 	}
 
 }
