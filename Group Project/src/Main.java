@@ -29,7 +29,7 @@ public class Main
 
 		try {
 
-			ImportMenu getMenu = new ImportMenu();
+			ImportInformation getMenu = new ImportInformation();
 			getMenu.importMenu();
 
 		} catch (FileNotFoundException e) {
@@ -37,7 +37,7 @@ public class Main
 			System.exit(0);
 		}
 
-		ImportUserInput getUserInput = new ImportUserInput();
+		ImportInformation getUserInput = new ImportInformation();
 		userInput=getUserInput.importUserInput();
 
 		if(userInput.get("appretizer").equals("true"))
