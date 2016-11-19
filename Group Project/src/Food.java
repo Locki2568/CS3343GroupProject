@@ -1,4 +1,4 @@
-
+package SourceCode;
 public abstract class Food 
 {
 	protected String foodName;
