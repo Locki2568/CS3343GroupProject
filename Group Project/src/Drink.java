@@ -1,4 +1,4 @@
-
+package SourceCode;
 public class Drink extends Food
 {
 	public Drink(String foodName, Main.foodType foodType, String price)
