@@ -1,3 +1,5 @@
+package SourceCode;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -19,17 +21,17 @@ public class Main
 	private static ArrayList<ArrayList<? extends Food>> menu = new ArrayList<ArrayList<? extends Food>>();
 	private static ArrayList<? extends Food> appetizerList = new ArrayList<Appetizer>();
 	private static ArrayList<? extends Food> mainDishList = new ArrayList<MainDish>();
-	private static ArrayList<? extends Food> drinkList = new ArrayList<Drinks>();
+	private static ArrayList<? extends Food> drinkList = new ArrayList<Drink>();
 	private static ArrayList<? extends Food> dessertList = new ArrayList<Dessert>();
 	private static ArrayList<ArrayList<Food>> tmpFoodCombination = new ArrayList<ArrayList<Food>>();
 	private static ArrayList<Combination> tmpFoodCombinationList = new ArrayList<Combination>();
 	private static double tempCombinationPrice = 0;
 	public static void main(String arg[]) 
 	{
-
+		ImportInformation getInformation = new ImportInformation();
 		try {
 
-			ImportInformation getInformation = new ImportInformation();
+			
 			getInformation.importMenu();
 
 		} catch (FileNotFoundException e) {
@@ -57,46 +59,46 @@ public class Main
 		}
 	}
 
-	public Map<String, String> getUserInput()
+	public static Map<String, String> getUserInput()
 	{
 		return userInput;
 	}
 
-	public ArrayList<ArrayList<? extends Food>> getMenu()
+	public static ArrayList<ArrayList<? extends Food>> getMenu()
 	{
 		return menu;
 	}
 
-	public void setAppetizerList(ArrayList<Appetizer> appList)
+	public static void setAppetizerList(ArrayList<Appetizer> appList)
 	{
-		this.appetizerList = appList;	
+		appetizerList = appList;	
 	}
-	public void setMainDishList(ArrayList<MainDish> mainList)
+	public static void setMainDishList(ArrayList<MainDish> mainList)
 	{
-		this.mainDishList = mainList;	
+		mainDishList = mainList;	
 	}
-	public void setDrinkList(ArrayList<Drinks> drList)
+	public static void setDrinkList(ArrayList<Drink> drList)
 	{
-		this.drinkList = drList;	
+		drinkList = drList;	
 	}
-	public void setDessertList(ArrayList<Dessert> deList)
+	public static void setDessertList(ArrayList<Dessert> deList)
 	{
-		this.dessertList = deList;	
+		dessertList = deList;	
 	}
-	public void addFoodCombination(ArrayList<ArrayList<Food>> foodCombination)
+	public static void addFoodCombination(ArrayList<Food> foodCombination)
 	{
 		tmpFoodCombination.add(foodCombination);	
 	}
-	public void addFoodCombinationItem(Combination foodCombinationItem)
+	public static void addFoodCombinationItem(Combination foodCombinationItem)
 	{
 		tmpFoodCombinationList.add(foodCombinationItem);	
 	}
-	public void setCombinationPrice(Double combinationPrice)
+	public static void setCombinationPrice(Double combinationPrice)
 	{
-		this.tempCombinationPrice = combinationPrice;	
+		tempCombinationPrice = combinationPrice;	
 	}
 	
-	public double getCombinationPrice()
+	public static double getCombinationPrice()
 	{
 		return tempCombinationPrice;	
 	}
