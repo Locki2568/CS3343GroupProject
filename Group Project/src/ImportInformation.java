@@ -1,3 +1,13 @@
+package SourceCode;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+
+import SourceCode.Main.foodType;
+
 public class ImportInformation
 {
 
@@ -5,7 +15,7 @@ public class ImportInformation
 	{
 		ArrayList<Appetizer> tempAppetizerList = new ArrayList<Appetizer>();
 		ArrayList<MainDish> tempMainDishList = new ArrayList<MainDish>();
-		ArrayList<Drinks> tempDrinkList = new ArrayList<Drinks>();
+		ArrayList<Drink> tempDrinkList = new ArrayList<Drink>();
 		ArrayList<Dessert> tempDessertList = new ArrayList<Dessert>();
 
 		Scanner inFile = new Scanner(new File("Food_Data.txt"));
@@ -28,7 +38,7 @@ public class ImportInformation
 			}
 			else if (inputArray[0].equals(foodType.DRINKS.toString()))
 			{
-				tempDrinkList.add(new Drinks(inputArray[1],foodType.DRINKS,inputArray[2]));
+				tempDrinkList.add(new Drink(inputArray[1],foodType.DRINKS,inputArray[2]));
 			}
 		}
 
