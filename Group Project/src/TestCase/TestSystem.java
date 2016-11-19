@@ -14,6 +14,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import SourceCode.Appetizer;
+import SourceCode.Calculation;
 import SourceCode.Combination;
 import SourceCode.Dessert;
 import SourceCode.Drink;
@@ -505,12 +506,121 @@ public class TestSystem {
 	}
 	
 	
-	//Test for calculatePrice
+	//Test for calculateCombination
 	
+	
+	
+	
+	
+	
+	
+	
+	//Test for calculatePrice
+
 	@Test
 	public void testCalculatePrice01()
 	{
 		
+		class SubCalculation extends Calculation
+		{
+
+			private double tempPrice = 0;
+			
+			public void calculatePrice(ArrayList<ArrayList<? extends Food>> menu, Map<String, String> userInput2)
+			{
+				int currentMenuCounter=0;
+				
+				ArrayList<Food> foodStorageList = new ArrayList<Food>();
+
+				for (Food f: menu.get(0))
+				{
+					if (Double.parseDouble(f.getPrice()) > Double.parseDouble(userInput2.get("budget")))
+					{
+						continue;
+					}
+					else
+					{
+						Main.setCombinationPrice(Main.getCombinationPrice()+Double.parseDouble(f.getPrice()));
+					}
+					if (foodStorageList.isEmpty())
+					{
+						foodStorageList.add(f);
+					}
+					else
+					{
+						foodStorageList.clear();
+						foodStorageList.add(f);
+					}
+					
+					if(menu.size() == 0)
+					{
+						System.out.println("No combination found!!!");
+					}
+					if(Main.getMenu().size() == 1)
+					{
+						if (Main.getCombinationPrice() <= Double.parseDouble(userInput2.get("budget")) && tempPrice> 0)
+						{
+							Main.addFoodCombinationItem(new Combination(foodStorageList));
+							continue;
+						}
+					}
+					else
+					{
+						calculateCombination(currentMenuCounter, foodStorageList);
+						
+						if (Main.getCombinationPrice() < 0)
+						{
+							System.out.println("Shit happens!!!");
+						}
+						foodStorageList = new ArrayList<Food>();
+						tempPrice = 0;
+					}
+
+				}
+				
+				
+				
+				
+			}
+			public double getPrice()
+			{
+				return tempPrice;
+			}
+		}
+
+		ArrayList<ArrayList<? extends Food>> menu = new ArrayList<ArrayList<? extends Food>>();
+		
+		ArrayList<Appetizer> appetizerList = new ArrayList<Appetizer>();
+		ArrayList<Dessert> dessertList = new ArrayList<Dessert>();
+		ArrayList<MainDish> mainDishList = new ArrayList<MainDish>();
+		ArrayList<Drink> drinkList = new ArrayList<Drink>();
+		
+		Appetizer appetizer=new Appetizer("Salad",Main.foodType.APPETIZER,"55");
+		Dessert dessert=new Dessert("Ice Cream",Main.foodType.DESSERT,"40");
+		MainDish mainDish=new MainDish("Roast Piggen",Main.foodType.MAINDISH,"199");
+		Drink drink=new Drink("Water",Main.foodType.DRINKS,"12");
+
+		appetizerList.add(appetizer);
+		dessertList.add(dessert);
+		mainDishList.add(mainDish);
+		drinkList.add(drink);
+		
+		menu.add(appetizerList);
+		menu.add(dessertList);
+		menu.add(mainDishList);
+		menu.add(drinkList);
+		
+		Map<String, String> userInput = new HashMap<String,String>();
+		userInput.put("appretizer",String.valueOf(true));
+		userInput.put("mainDish",String.valueOf(true));
+		userInput.put("drink",String.valueOf(true));
+		userInput.put("dessert",String.valueOf(true));
+		userInput.put("budget", String.valueOf(100.0));
+		
+		SubCalculation calculatePrice = new SubCalculation();
+		calculatePrice.calculatePrice(menu, userInput);
+		
+		assertEquals(calculatePrice.getPrice(),100.0);
 		
 	}
 	
