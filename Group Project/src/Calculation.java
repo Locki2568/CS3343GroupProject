@@ -1,6 +1,11 @@
+package SourceCode;
+
+import java.util.ArrayList;
+import java.util.Map;
+
 public class Calculation
 {
-	private void calculatePrice(ArrayList<ArrayList<? extends Food>> menu, Map<String, String> userInput2)
+	public void calculatePrice(ArrayList<ArrayList<? extends Food>> menu, Map<String, String> userInput2)
 	{
 		int currentMenuCounter=0;
 		double tempPrice = 0;
@@ -42,7 +47,7 @@ public class Calculation
 			{
 				calculateCombination(currentMenuCounter, foodStorageList);
 				
-				if (Main.getCombinationPrice < 0)
+				if (Main.getCombinationPrice() < 0)
 				{
 					System.out.println("Shit happens!!!");
 				}
@@ -50,11 +55,11 @@ public class Calculation
 				tempPrice = 0;
 			}
 
-			Main.setCombinationPrice(0);
+			Main.setCombinationPrice(0.0);
 		}
 	}
 
-	private void calculateCombination(int currentMenuCounter, ArrayList<Food> foodStorageList) 
+	public void calculateCombination(int currentMenuCounter, ArrayList<Food> foodStorageList) 
 	{	
 		for (int i = currentMenuCounter+1; i<Main.getMenu().size();i++)
 		{
@@ -79,7 +84,7 @@ public class Calculation
 					
 					//tempPrice = tempCombinationPrice;
 					
-					if (Main.getCombinationPrice() <= Double.parseDouble(userInput.get("budget")) && Main.getCombinationPrice()> 0 && foodStorageList.size() == Main.getMenu().size())
+					if (Main.getCombinationPrice() <= Double.parseDouble(Main.getUserInput().get("budget")) && Main.getCombinationPrice()> 0 && foodStorageList.size() == Main.getMenu().size())
 					{
 						Main.addFoodCombination(foodStorageList);
 						ArrayList CopyOffoodStorageList = new ArrayList(foodStorageList);
