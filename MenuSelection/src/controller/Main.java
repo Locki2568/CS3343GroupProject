@@ -36,14 +36,14 @@ public class Main
 	private static ArrayList<Combination> tmpFoodCombinationList = new ArrayList<Combination>();
 	private static double tempCombinationPrice = 0;
 	
-	public static void main(String arg[]) throws FileNotFoundException, InputMismatchException{
+	public static void main(String arg[]){
 		
-		Menu getInformation = new Menu();
+		try	{
 			
-		try {
+			Menu getInformation = new Menu();
 			
 			getInformation.importMenu();
-			
+				
 			userInput=getInformation.importUserInput();
 
 			if(userInput.get("appretizer").equals("true"))
@@ -54,24 +54,22 @@ public class Main
 				menu.add(drinkList);
 			if(userInput.get("dessert").equals("true"))
 				menu.add(dessertList);
-				
-			
+					
 			Calculate calculation = new Calculate();
 			calculation.calculatePrice(menu, userInput);
-			
+				
 			for(Combination c :tmpFoodCombinationList)
-			{
-				c.getCombinationPrice();
-				System.out.println();
-			}
+				{
+					c.getCombinationPrice();
+					System.out.println();
+				}
 			
-		} 
-		catch (FileNotFoundException e) {
+		} catch (FileNotFoundException e){
 			System.out.println(e.getMessage());
-		} 
-		catch (InputMismatchException e) {
-			System.out.println("Fuck You");
+		} catch (exception.InputMismatchException e){
+			System.out.println(e.getMessage());
 		}
+
 
 	}
 

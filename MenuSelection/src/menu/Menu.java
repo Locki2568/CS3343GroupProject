@@ -8,8 +8,8 @@ import food.*;
 import controller.*;
 import controller.Main.foodType;
 
-import exception.*;
-import exception.InputMismatchException;
+import validate.*;
+
 
 public class Menu
 {
@@ -57,26 +57,60 @@ public class Menu
 	}
 	
 
-	public Map<String, String> importUserInput() throws InputMismatchException{
+	public Map<String, String> importUserInput() throws exception.InputMismatchException{
 		
 		Map<String, String> userInput = new HashMap<String,String>();
 		Scanner input = new Scanner(System.in);
+		
+		String appretizer_str = "";
+		String mainDish_str = "";
+		String drink_str = "";
+		String dessert_str = "";
+		String budget_str = "";
+		
 		boolean appretizer;
 		boolean mainDish;
 		boolean drink;
 		boolean dessert;
 		double budget;
 		
+		boolean valid;
+		
 		System.out.println("Would you like to order appretizer?");
-		appretizer = input.nextBoolean();
+		appretizer_str = input.next();
+		valid = validate.ValidateInput.validBooleanInput(appretizer_str);
+		if(valid == false)
+			throw new exception.InputMismatchException();
+		
 		System.out.println("Would you like to order main dish?");
-		mainDish = input.nextBoolean();
+		mainDish_str = input.next();
+		valid = validate.ValidateInput.validBooleanInput(mainDish_str);
+		if(valid == false)
+			throw new exception.InputMismatchException();
+		
 		System.out.println("Would you like to order drink?");
-		drink = input.nextBoolean();
+		drink_str = input.next();
+		valid = validate.ValidateInput.validBooleanInput(drink_str);
+		if(valid == false)
+			throw new exception.InputMismatchException();
+		
 		System.out.println("Would you like to order dessert?");
-		dessert = input.nextBoolean();
+		dessert_str = input.next();
+		valid = validate.ValidateInput.validBooleanInput(dessert_str);
+		if(valid == false)
+			throw new exception.InputMismatchException();
+		
 		System.out.println("Please enter your budget");
-		budget = input.nextDouble();
+		budget_str = input.next();
+		valid = validate.ValidateInput.validNumericInput(budget_str);
+		if(valid == false)
+			throw new exception.InputMismatchException();
+		
+		appretizer = Boolean.parseBoolean(appretizer_str);
+		mainDish = Boolean.parseBoolean(mainDish_str);
+		drink = Boolean.parseBoolean(drink_str);
+		dessert = Boolean.parseBoolean(dessert_str);
+		budget = Double.parseDouble(budget_str);
 
 		userInput.put("appretizer",String.valueOf(appretizer));
 		userInput.put("mainDish",String.valueOf(mainDish));
