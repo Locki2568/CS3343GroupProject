@@ -3,7 +3,11 @@ package TestCase;
 import static org.junit.Assert.*;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+
+import SourceCode.Appetizer;
 import SourceCode.Combination;
+import SourceCode.Food;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -17,16 +21,9 @@ public class TestSourceCode {
 	ByteArrayOutputStream bos;
 
 	@Test
-	public void testCombination01()
+	public void testCombination01() throws Exception
 	{
-		setOutput();
-		ArrayList<Food> foodCombination = new ArrayList<Food>();
-		Appetizer appetizer=new Appetizer("Salad",Food.foodType.APPETIZER,"55");
-		foodCombination.add(appetizer);
 		
-		Combination mealCombination = new Combination(foodCombination);
-		mealCombination.getCombinationPrice();
-		assertEquals("Salad:  $55 ",getOutput());
 
 	}
 	

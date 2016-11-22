@@ -7,7 +7,8 @@ import java.io.PrintStream;
 
 import org.junit.Test;
 
-import SourceCode.Appetizer;
+import SourceCode.Food;
+import SourceCode.Drink;
 import SourceCode.Food.foodType;
 
 public class TestSourceCode {

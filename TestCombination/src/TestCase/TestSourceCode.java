@@ -16,7 +16,7 @@ public class TestSourceCode {
 	ByteArrayOutputStream bos;
 
 	@Test
-	public void testCombination01()
+	public void testCombination01() throws Exception
 	{
 		setOutput();
 		ArrayList<Food> foodCombination = new ArrayList<Food>();

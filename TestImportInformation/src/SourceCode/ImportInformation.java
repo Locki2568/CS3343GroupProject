@@ -73,11 +73,11 @@ public class ImportInformation
 		boolean dessert;
 		double budget;
 
-		System.out.println("Would you like to order appretizer?");
+		Print("Would you like to order appretizer?");
 		appretizer = input.nextBoolean();
-		System.out.println("Would you like to order main dish?");
+		Print("Would you like to order main dish?");
 		mainDish = input.nextBoolean();
-		Print("Would you like to order drink?");
+		System.out.println("Would you like to order drink?");
 		drink = input.nextBoolean();
 		System.out.println("Would you like to order dessert?");
 		dessert = input.nextBoolean();
@@ -93,13 +93,12 @@ public class ImportInformation
 		if(userInput.get("appretizer").equals("false") && userInput.get("mainDish").equals("false") 
 							&& userInput.get("drink").equals("false") && userInput.get("dessert").equals("false"))
 		{
-			Print("Invalid input, please choose at least one type of food.");
+			System.out.println("Invalid input, please choose at least one type of food.");
 			System.exit(0);
 		}
 		else if (Double.parseDouble(userInput.get("budget")) <= 0)
 		{
-			Print("Invalid input, the bugget should be greater than one.");
-			System.exit(0);
+			System.out.println("Invalid input, the bugget should be greater than one.");
 		}
 		else
 		{
@@ -112,7 +111,7 @@ public class ImportInformation
 			if(userInput.get("dessert").equals("true"))
 				menu.add(dessertList);
 			
-			Print("Import user input Complete.");
+			System.out.println("Import user input Complete.");
 		}
 
 		return userInput;

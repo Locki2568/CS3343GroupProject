@@ -12,8 +12,6 @@ import java.util.Set;
 
 public class Main 
 {
-
-
 	public static void main(String arg[]) 
 	{
 		ImportInformation getInformation = new ImportInformation();
@@ -30,8 +28,6 @@ public class Main
 		
 		Calculation calculation = new Calculation();
 		calculation.calculatePrice(getInformation.getMenu(), getInformation.getUserInput());
-		calculation.getResult();
-		
+		calculation.getResult();	
 	}
-
 }

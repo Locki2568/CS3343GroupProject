@@ -12,10 +12,12 @@ public class Calculation
 	{
 		int currentMenuCounter=0;
 
-		ArrayList<Food> foodStorageList = new ArrayList<Food>();
+		ArrayList<Food> foodStorageList;
 
 		for (Food f: menu.get(0))
 		{
+			foodStorageList = new ArrayList<Food>();
+			foodStorageList.add(f);
 			if (Double.parseDouble(f.getPrice()) > Double.parseDouble(userInput2.get("budget")))
 			{
 				continue;
@@ -24,17 +26,7 @@ public class Calculation
 			{
 				tempCombinationPrice=tempCombinationPrice+Double.parseDouble(f.getPrice());
 			}
-			if (foodStorageList.isEmpty())
-			{
-				foodStorageList.add(f);
-			}
-			else
-			{
-				foodStorageList.clear();
-				foodStorageList.add(f);
-			}
-			
-			
+
 			if(ImportInformation.getMenu().size() == 1)
 			{
 				if (tempCombinationPrice <= Double.parseDouble(userInput2.get("budget")))
@@ -45,14 +37,7 @@ public class Calculation
 			}
 			else
 			{
-				calculateCombination(currentMenuCounter, foodStorageList);
-				
-				if (tempCombinationPrice < 0)
-				{
-					System.out.println("Shit happens!!!");
-				}
-				foodStorageList = new ArrayList<Food>();
-
+				calculateCombination(currentMenuCounter, foodStorageList);	
 			}
 
 			tempCombinationPrice=0.0;

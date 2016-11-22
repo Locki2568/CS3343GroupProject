@@ -6,7 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.PrintStream;
 
 import org.junit.Test;
-
+import SourceCode.Food;
 import SourceCode.Appetizer;
 import SourceCode.Food.foodType;
 
