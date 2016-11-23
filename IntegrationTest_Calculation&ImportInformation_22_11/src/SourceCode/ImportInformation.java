@@ -18,12 +18,6 @@ public class ImportInformation
 	private static ArrayList<? extends Food> drinkList = new ArrayList<Drink>();
 	private static ArrayList<? extends Food> dessertList = new ArrayList<Dessert>();
 	private static ArrayList<ArrayList<Food>> tmpFoodCombination = new ArrayList<ArrayList<Food>>();
-
-
-
-	public void Print(String str) {
-		System.out.print(str);
-	}
 	
 	public void importMenu(String fileName) throws FileNotFoundException
 	{
@@ -98,7 +92,7 @@ public class ImportInformation
 		}
 		else if (Double.parseDouble(userInput.get("budget")) <= 0)
 		{
-			System.out.println("Invalid input, the bugget should be greater than one.");
+			System.out.println("Invalid input, the bugget should be greater than zero.");
 			System.exit(0);
 		}
 		else
@@ -112,7 +106,7 @@ public class ImportInformation
 			if(userInput.get("dessert").equals("true"))
 				menu.add(dessertList);
 			
-			System.out.println("Import user input Complete.");
+			System.out.println("Import user input complete.");
 		}
 
 		return userInput;

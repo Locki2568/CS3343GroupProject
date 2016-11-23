@@ -6,9 +6,9 @@ import java.util.Map;
 public class Calculation
 {
 	private static double tempCombinationPrice = 0;
-	private static ArrayList<Combination> tmpFoodCombinationList = new ArrayList<Combination>();
+	private static ArrayList<Combination> tempFoodCombinationList = new ArrayList<Combination>();
 	
-	public void calculatePrice(ArrayList<ArrayList<? extends Food>> menu, Map<String, String> userInput2)
+	public void calculatePrice(ArrayList<ArrayList<? extends Food>> menu, Map<String, String> userInput)
 	{
 		int currentMenuCounter=0;
 
@@ -18,7 +18,7 @@ public class Calculation
 		{
 			foodStorageList = new ArrayList<Food>();
 			foodStorageList.add(f);
-			if (Double.parseDouble(f.getPrice()) > Double.parseDouble(userInput2.get("budget")))
+			if (Double.parseDouble(f.getPrice()) > Double.parseDouble(userInput.get("budget")))
 			{
 				continue;
 			}
@@ -26,12 +26,11 @@ public class Calculation
 			{
 				tempCombinationPrice=tempCombinationPrice+Double.parseDouble(f.getPrice());
 			}
-
 			if(ImportInformation.getMenu().size() == 1)
 			{
-				if (tempCombinationPrice <= Double.parseDouble(userInput2.get("budget")))
+				if (tempCombinationPrice <= Double.parseDouble(userInput.get("budget")))
 				{
-					tmpFoodCombinationList.add(new Combination(foodStorageList));
+					tempFoodCombinationList.add(new Combination(foodStorageList));
 					continue;
 				}
 			}
@@ -39,7 +38,6 @@ public class Calculation
 			{
 				calculateCombination(currentMenuCounter, foodStorageList);	
 			}
-
 			tempCombinationPrice=0.0;
 		}
 	}
@@ -74,7 +72,7 @@ public class Calculation
 						ImportInformation.addFoodCombination(foodStorageList);
 						ArrayList CopyOffoodStorageList = new ArrayList(foodStorageList);
 						Combination combination = new Combination(CopyOffoodStorageList);
-						tmpFoodCombinationList.add(combination);
+						tempFoodCombinationList.add(combination);
 					}
 					
 					tempCombinationPrice=tempCombinationPrice- Double.parseDouble(f3.getPrice());
@@ -84,17 +82,9 @@ public class Calculation
 		}
 	}
 	
-	
-	public void getResult()
+	public ArrayList<Combination> getResult()
 	{
-		for(Combination c :tmpFoodCombinationList)
-		{
-			c.getCombinationPrice();
-			System.out.println();
-		}
+		return tempFoodCombinationList;
 	}
 	
-	
-
-
 }

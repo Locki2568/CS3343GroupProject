@@ -29,15 +29,9 @@ public class IntagrationTest {
 		information.importUserInput();	
 		Calculation calcPrice = new Calculation();
 		calcPrice.calculatePrice(information.getMenu(),information.getUserInput());
-		// compare the object list itself instead of String output, the string output can be done in main.
-		ArrayList<Combination> exspectedResult = new ArrayList<Combination>();
-		ArrayList<Food> exspectedFoodList = new ArrayList<Food>();
-		Food appetizer = new Appetizer("Salad",Food.foodType.APPETIZER,"55");
-		Food mainDish = new MainDish("Beef Enchailada",Food.foodType.MAINDISH,"100");
-		exspectedFoodList.add(appetizer);
-		exspectedFoodList.add(mainDish);
-		exspectedResult.add(new Combination(exspectedFoodList));
-		assertEquals(exspectedResult ,calcPrice.getResult());
+		setOutput();
+		calcPrice.getResult();
+		assertEquals("Salad:  $55 Beef Enchailada:  $100 " ,getOutput().toString());
 	}
 	
 	
