@@ -1,0 +1,4 @@
+APPETIZER,Salad,55
+MAINDISH,Beef Enchailada,100
+DRINKS,Coka Cola,10
+DESSERT,Teja,85
